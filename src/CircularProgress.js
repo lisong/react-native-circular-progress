@@ -1,4 +1,5 @@
-import React, { View, PropTypes, Platform } from 'react-native';
+import React, {PropTypes} from 'react';
+import { View, Platform } from 'react-native';
 import { Surface, Shape, Path, Group } from '../../react-native/Libraries/ART/ReactNativeART';
 import MetricsPath from 'art/metrics/path';
 
@@ -11,10 +12,10 @@ export default class CircularProgress extends React.Component {
       p.path.push(0, cx + r, cy);
       p.path.push(4, cx, cy, r, startDegree * Math.PI / 180, endDegree * Math.PI / 180, 1);
     } else {
-      // For Android we have to resort to drawing low-level Path primitives, as ART does not support 
+      // For Android we have to resort to drawing low-level Path primitives, as ART does not support
       // arbitrary circle segments. It also does not support strokeDash.
       // Furthermore, the ART implementation seems to be buggy/different than the iOS one.
-      // MoveTo is not needed on Android 
+      // MoveTo is not needed on Android
       p.path.push(4, cx, cy, r, startDegree * Math.PI / 180, (startDegree - endDegree) * Math.PI / 180, 0);
     }
     return p;
